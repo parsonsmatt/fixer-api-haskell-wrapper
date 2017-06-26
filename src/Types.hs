@@ -212,11 +212,16 @@ instance FromJSON FixerResponse
 
 instance ToJSON FixerResponse
 
+-- Prefer to use existing types. `Data.Time` has a `Day` type that does
+-- exactly this.
 data FixerDate = FixerDate
   { year :: Int
   , month :: Int
   , day :: Int
   }
 
+-- Show instances should almost always be derived, and used to generate
+-- valid Haskell code. They should not be for pretty-printing or displaying
+-- code to the user.
 instance Show FixerDate where
   show x = mconcat [(show $ year x), "-", (show $ month x), "-", (show $ day x)]
